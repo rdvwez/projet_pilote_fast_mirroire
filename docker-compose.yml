@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: projet_pilote_fast
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+  db:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME={MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD={MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE: mydbname
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:
