@@ -21,4 +21,3 @@ async def create_post(post: UserPostIn):
 @app.post("/post", response_model=list[UserPost])
 async def get_all_posts():
     return list(post_table.values())
-    return list(post_table.values())
